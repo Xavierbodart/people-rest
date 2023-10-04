@@ -1,7 +1,7 @@
 package com.box.people.rest;
 
-import com.box.people.rest.model.PersonCO;
 import com.box.people.rest.model.base.ResultObject;
+import com.box.people.rest.model.person.PersonCO;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +29,13 @@ public class ApplicationTests {
     private static final String LAST_NAME_UPDATED = "Test-Lastname Updated";
 
     private static UUID id;
+    private static String getRootUrl() {
+        return "http://localhost:8080";
+    }
+    private static String getResourceUrl() {
+        return getRootUrl() + "/" + RESOURCE_NAME;
+    }
+
     private static ParameterizedTypeReference<ResultObject<PersonCO>> responseType =
             new ParameterizedTypeReference<>() {
             };
@@ -43,13 +50,6 @@ public class ApplicationTests {
         this.restTemplate = restTemplate;
     }
 
-    private String getRootUrl() {
-        return "http://localhost:8080";
-    }
-
-    private String getResourceUrl() {
-        return getRootUrl() + "/" + RESOURCE_NAME;
-    }
 
     @Test
     @Order(1)
