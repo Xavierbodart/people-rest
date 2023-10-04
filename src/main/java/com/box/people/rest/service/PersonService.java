@@ -2,8 +2,8 @@ package com.box.people.rest.service;
 
 import com.box.people.rest.dao.PersonRepository;
 import com.box.people.rest.mapper.PersonMapper;
-import com.box.people.rest.model.PersonCO;
-import com.box.people.rest.model.PersonEntity;
+import com.box.people.rest.model.person.PersonCO;
+import com.box.people.rest.model.person.PersonEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +34,8 @@ public class PersonService {
         if (!personRepository.existsById(id.toString())) {
             throw new NoSuchElementException("no person with id " + id.toString());
         }
+        personCO.setId(id);
         PersonEntity personEntity = personMapper.mapFromCO(personCO);
-        personEntity.setId(id.toString());
         return personMapper.mapToCO(personRepository.save(personEntity));
     }
 

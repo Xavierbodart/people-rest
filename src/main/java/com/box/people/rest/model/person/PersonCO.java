@@ -1,4 +1,4 @@
-package com.box.people.rest.model;
+package com.box.people.rest.model.person;
 
 
 import io.swagger.annotations.ApiModel;

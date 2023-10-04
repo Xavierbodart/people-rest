@@ -1,10 +1,13 @@
-package com.box.people.rest.model;
+package com.box.people.rest.model.person;
 
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -17,12 +20,10 @@ public class PersonEntity {
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false, updatable = false)
     private Date creationDate;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modification_date")
+    @Column(name = "modification_date", nullable = false)
     private Date modificationDate;
 
     public PersonEntity() {

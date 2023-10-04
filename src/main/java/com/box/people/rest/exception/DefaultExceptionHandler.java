@@ -29,8 +29,8 @@ public class DefaultExceptionHandler {
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler({NoSuchElementException.class,
-            EntityNotFoundException.class, EmptyResultDataAccessException.class})
+    @ExceptionHandler({NoSuchElementException.class, EntityNotFoundException.class,
+            EmptyResultDataAccessException.class})
     public ResponseEntity<ResultObject<ErrorMessage>> handleResourceNotFoundException(Exception ex) {
         final List<ErrorMessage> errorMessages =
                 Collections.singletonList(new ErrorMessage("Resource not found: " + ex.getMessage(), "404"));
@@ -39,8 +39,7 @@ public class DefaultExceptionHandler {
     }
 
     @ExceptionHandler({HttpMessageNotReadableException.class, DataIntegrityViolationException.class,
-            ConstraintViolationException.class,
-            IllegalArgumentException.class})
+            ConstraintViolationException.class, IllegalArgumentException.class})
     public ResponseEntity<ResultObject<ErrorMessage>> handleBadRequests(Exception ex) {
         final List<ErrorMessage> errorMessages =
                 Collections.singletonList(new ErrorMessage("Bad request: " + ex.getMessage(), "400"));
@@ -51,7 +50,7 @@ public class DefaultExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResultObject<ErrorMessage>> notValid(MethodArgumentNotValidException ex) {
         List<ErrorMessage> errorMessages =
-                ex.getAllErrors().stream().map(error -> new ErrorMessage(error.getDefaultMessage(), "400")).collect(Collectors.toList());
+                ex.getAllErrors().stream().map(error -> new ErrorMessage("Object not valid: " + error.getDefaultMessage(), "400")).collect(Collectors.toList());
         return new ResponseEntity<>(new ResultObject<>(this.appName, false, null, errorMessages),
                 HttpStatus.BAD_REQUEST);
     }

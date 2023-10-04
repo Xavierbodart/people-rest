@@ -1,8 +1,8 @@
 package com.box.people.rest.controller;
 
 
-import com.box.people.rest.model.PersonCO;
 import com.box.people.rest.model.base.ResultObject;
+import com.box.people.rest.model.person.PersonCO;
 import com.box.people.rest.service.PersonService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,9 +41,8 @@ public class PeopleController extends AbstractController {
     @ApiOperation("Delete person")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResultObject<?> deletePerson(@PathVariable("id") UUID id) {
+    public void deletePerson(@PathVariable("id") UUID id) {
         personService.deletePerson(id);
-        return mapToResultObject(HttpStatus.NO_CONTENT);
     }
 
     @ApiOperation("Get person")

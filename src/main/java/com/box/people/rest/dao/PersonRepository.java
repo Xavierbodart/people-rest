@@ -1,6 +1,6 @@
 package com.box.people.rest.dao;
 
-import com.box.people.rest.model.PersonEntity;
+import com.box.people.rest.model.person.PersonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository()
+@Repository
 public interface PersonRepository extends JpaRepository<PersonEntity, String> {
 
     @Query(value = "SELECT p.* FROM PEOPLE p " +
